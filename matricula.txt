@@ -1,0 +1,3 @@
+El estudiante : santi
+ con cedula: 123
+ Se ha matriculado en el curso: React tiene una duracion de: 30 horas y un valor de: 250000 pesos
