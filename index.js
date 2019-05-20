@@ -36,14 +36,14 @@ if(argv.i < cursos.length){
     const fs = require('fs');
 
     let crearArchivo = (estudiante)=>{
-        texto = 'El estudiante : '+estudiante.est_nombre + "\n"+
-        ' con cedula: '+ estudiante.est_cc + "\n"+
-        ' Se ha matriculado en el curso: '+curso.nombre + 
-        ' tiene una duracion de: '+ curso.duracion +
-        ' y un valor de: '+ curso.valor;
+        texto = 'El estudiante : '+estudiante.est_nombre + "\r\n"+
+        'con cedula: '+ estudiante.est_cc + "\r\n"+
+        'Se ha matriculado en el curso: '+curso.nombre + 
+        'tiene una duracion de: '+ curso.duracion +
+        'y un valor de: '+ curso.valor;
         fs.writeFile('matricula.txt',texto,(err)=>{
             if(err)throw(err);
-            console.log('Se creo')
+            console.log('Se creo el archivo')
         });
     }
 
@@ -61,6 +61,7 @@ if(argv.i < cursos.length){
     
         },i*2000);   
     }
+    console.log('Para inscribirse a uno de los cursos utilice la instrucion: node index inscribir -i=id del curso -n=nombre -c=cedula');
 }
 
 
