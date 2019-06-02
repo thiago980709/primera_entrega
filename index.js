@@ -1,6 +1,6 @@
-
-
 const {cursos}=require('./datos.js');
+var express = require('express')
+var app = express()
 
 
 const opciones={
@@ -23,7 +23,7 @@ const argv = require('yargs')
 .command('inscribir','Inscribirse a un curso',opciones)
 .argv
 
-if(argv.i < cursos.length){
+if(argv.i <= cursos.length){
     let id_curso = argv.i;
     let est_nombre = argv.n;
     let est_cc = argv.c;
@@ -33,21 +33,33 @@ if(argv.i < cursos.length){
     console.log('La duracion es: ' + curso.duracion);
     console.log('El valor  es: ' + curso.valor);
 
-    const fs = require('fs');
+    // const fs = require('fs');
 
-    let crearArchivo = (estudiante)=>{
-        texto = 'El estudiante : '+estudiante.est_nombre + "\r\n"+
+    // let crearArchivo = (estudiante)=>{
+    //     texto = 'El estudiante : '+estudiante.est_nombre + "\r\n"+
+    //     'con cedula: '+ estudiante.est_cc + "\r\n"+
+    //     'Se ha matriculado en el curso: '+curso.nombre + 
+    //     'tiene una duracion de: '+ curso.duracion +
+    //     'y un valor de: '+ curso.valor;
+    //     fs.writeFile('matricula.txt',texto,(err)=>{
+    //         if(err)throw(err);
+    //         console.log('Se creo el archivo')
+    //     });
+    // }
+
+    // crearArchivo(estudiante);
+    
+    texto = 'El estudiante : '+estudiante.est_nombre + "\r\n"+
         'con cedula: '+ estudiante.est_cc + "\r\n"+
         'Se ha matriculado en el curso: '+curso.nombre + 
-        'tiene una duracion de: '+ curso.duracion +
-        'y un valor de: '+ curso.valor;
-        fs.writeFile('matricula.txt',texto,(err)=>{
-            if(err)throw(err);
-            console.log('Se creo el archivo')
-        });
-    }
+        ' tiene una duracion de: '+ curso.duracion +
+        ' y un valor de: '+ curso.valor;
 
-    crearArchivo(estudiante);
+    app.get('/', function(req,res){
+        res.send(texto)
+    })
+    
+    app.listen(3000)
 
 }else{
     console.log('El curso ingresado no es valido, estos son nuestros cursos')
